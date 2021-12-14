@@ -1,4 +1,4 @@
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, DiscordAPIError } = require('discord.js');
 const Discord = require('discord.js')
 // Importing this allows you to access the environment variables of the running node process
 require('dotenv').config();
@@ -27,18 +27,13 @@ client.on('messageCreate', async message => {
         let logEmbed = new Discord.MessageEmbed()
         .setDescription(`${message.author} Said a bad word`)
         .addField('The message:', message.content)
+        .addField('Channel', message.guild.channels.cache.get(message.channel.id).toString())
         .setColor('RANDOM')
         .setTimestamp()
         logChannel.send({embeds: [logEmbed]})
-
-        let embed = new Discord.MessageEmbed()
-        .setDescription(`That word is not allowed here`)
-        .setColor('RANDOM')
-        .setTimestamp()
-        let msg = await message.channel.send(embed);
         message.delete()
-        msg.delete({timeout: '15500'})
     }
+
 
 })
 
