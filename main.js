@@ -38,4 +38,4 @@ client.on('messageCreate', async message => {
 })
 
 
-client.login(process.env.CLIENT_TOKEN);
+client.login(process.env.DJS_TOKEN);
