@@ -2,6 +2,7 @@ const { Client, Intents, DiscordAPIError } = require('discord.js');
 const Discord = require('discord.js')
 // Importing this allows you to access the environment variables of the running node process
 require('dotenv').config();
+const token = process.env.token
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -38,4 +39,4 @@ client.on('messageCreate', async message => {
 })
 
 
-client.login(process.env.DJS_TOKEN);
+client.login(token);
