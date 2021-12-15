@@ -1,3 +1,4 @@
 #IGNORE TOKEN
 .env
 node_modules
+cursewords.js

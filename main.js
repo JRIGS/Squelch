@@ -1,8 +1,10 @@
+// import { curseWords } from "./cursewords.cjs"
 const { Client, Intents, DiscordAPIError } = require('discord.js');
 const Discord = require('discord.js')
 // Importing this allows you to access the environment variables of the running node process
 require('dotenv').config();
-const token = process.env.token
+
+const curseWords = require('./cursewords')
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -17,7 +19,7 @@ client.on('messageCreate', async message => {
     if(message.channel.type === 'dm' || message.author.bot) return;
 
     const logChannel = client.channels.cache.find(channel => channel.id === '920418900930330664')
-    let words = ["banana", "orange"]
+    let words = curseWords
 
     let foundInText = false;
     for (var i in words) {
@@ -39,4 +41,4 @@ client.on('messageCreate', async message => {
 })
 
 
-client.login(token);
+client.login(process.env.CLIENT_TOKEN);
